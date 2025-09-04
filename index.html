@@ -259,7 +259,7 @@
                         </div>
                     </div>
                     
-                    <button id="pay-now" class="btn btn-primary w-full mt-8">Pay Now</button>
+                    <button id="pay-now-btn" class="btn btn-primary w-full mt-8">Pay Now</button>
                     <p class="text-xs text-gray-500 text-center mt-4">Note: This is a demo form. No real payment will be processed.</p>
                 </div>
             </div>
@@ -304,151 +304,92 @@
     </main>
 
     <!-- Payment Modal -->
-    <div id="payment-modal-overlay" class="hidden">
-        <div id="payment-modal">
-            <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
-            <h2 class="text-2xl font-bold text-center mb-6">Choose Payment Method</h2>
-            <div id="payment-options-container">
-                <!-- Links will be dynamically inserted here -->
-            </div>
-            <div class="mt-4 text-center text-sm text-gray-500">
-                <p>After paying, your session is confirmed. Caleb will be in touch shortly.</p>
-            </div>
+<div id="payment-modal-overlay" class="hidden fixed inset-0 bg-black bg-opacity-70 z-40 flex justify-center items-center">
+    <div id="payment-modal" 
+         class="relative transform scale-95 opacity-0 transition-all duration-300 ease-out bg-gray-800 p-8 rounded-xl border border-gray-700 w-11/12 max-w-lg">
+        
+        <!-- Close Button -->
+        <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl">&times;</button>
+        
+        <h3 class="text-2xl font-bold text-center mb-6">Choose Payment Method</h3>
+
+        <!-- PayPal -->
+        <a id="paypal-link" href="#" target="_blank" class="payment-option">
+            <img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/PP_Acceptance_Marks_for_LogoCenter_294x110_transparent_point.png" alt="PayPal">
+            <span>Pay with PayPal</span>
+        </a>
+
+        <!-- Cash App -->
+        <a id="cashapp-link" href="#" target="_blank" class="payment-option">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c6/Cash_App_logo.svg" alt="Cash App">
+            <span>Pay with Cash App</span>
+        </a>
+
+        <!-- Venmo -->
+        <a id="venmo-link" href="#" target="_blank" class="payment-option">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Venmo_Logo_Blue.svg" alt="Venmo">
+            <span>Pay with Venmo</span>
+        </a>
+
+        <!-- Zelle -->
+        <div class="text-center border-t border-gray-700 pt-4 mt-4">
+            <h4 class="font-bold text-lg mb-2">Zelle</h4>
+            <p class="text-gray-400">Send payment manually to:</p>
+            <p id="zelle-info" class="text-lg gold-text font-semibold"></p>
         </div>
     </div>
+</div>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const paymentInfo = {
+        amount: 80,
+        paypalUser: "YOURPAYPALUSERNAME",
+        cashAppTag: "YOURCASHTAG",
+        venmoUser: "YOURVENMOTAG",
+        zelleInfo: "your@email.com or (555) 123-4567"
+    };
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-800">
-        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
-            <p>&copy; 2025 Elite Performance Coaching. All Rights Reserved.</p>
-        </div>
-    </footer>
+    const payNowBtn = document.getElementById('pay-now-btn');
+    const modalOverlay = document.getElementById('payment-modal-overlay');
+    const modal = document.getElementById('payment-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
 
-    <script>
-        const applyBtn = document.getElementById('apply-promo');
-        const promoInput = document.getElementById('promo-code');
-        const promoStatus = document.getElementById('promo-status');
-        const discountAmountEl = document.getElementById('discount-amount');
-        const totalPriceEl = document.getElementById('total-price');
-        const payBtn = document.getElementById('pay-now');
-        const modalOverlay = document.getElementById('payment-modal-overlay');
-        const closeModalBtn = document.getElementById('close-modal');
-        const paymentOptionsContainer = document.getElementById('payment-options-container');
+    const paypalLink = document.getElementById('paypal-link');
+    const cashAppLink = document.getElementById('cashapp-link');
+    const venmoLink = document.getElementById('venmo-link');
+    const zelleInfo = document.getElementById('zelle-info');
 
-        const originalPrice = 80;
-        let currentPrice = 80;
+    function openModal() {
+        paypalLink.href = `https://paypal.me/${paymentInfo.paypalUser}/${paymentInfo.amount}`;
+        cashAppLink.href = `https://cash.app/$${paymentInfo.cashAppTag}/${paymentInfo.amount}`;
+        venmoLink.href = `https://venmo.com/${paymentInfo.venmoUser}?txn=pay&amount=${paymentInfo.amount}&note=CoachingSession`;
+        zelleInfo.textContent = paymentInfo.zelleInfo;
 
-        // --- PAYMENT & CONTACT INFO ---
-        // !!! IMPORTANT: Replace these placeholders with your actual usernames and info !!!
-        const paymentInfo = {
-            venmoUser: "YOUR-VENMO-ID",
-            cashAppTag: "YOUR-CASHTAG",
-            paypalUser: "YOUR-PAYPALME-ID",
-            zelleInfo: "name@email.com or 555-123-4567" // Your Zelle Email/Phone
-        };
+        modalOverlay.classList.remove('hidden');
 
+        // animate in
+        setTimeout(() => {
+            modal.classList.remove("scale-95", "opacity-0");
+            modal.classList.add("scale-100", "opacity-100");
+        }, 20);
+    }
 
-        // --- PROMO CODES ---
-        // Add or remove your promo codes here.
-        // The key is the code users will type (e.g., "JUMPSTART25").
-        // The value is the discount percentage (e.g., 0.25 for 25% off).
-        const promoCodes = {
-            "JUMPSTART25": 0.25,
-            "SPRINT10": 0.10,
-            "FOSTER50": 0.50
-        };
+    function closeModal() {
+        // animate out
+        modal.classList.remove("scale-100", "opacity-100");
+        modal.classList.add("scale-95", "opacity-0");
 
-        applyBtn.addEventListener('click', () => {
-            const code = promoInput.value.trim().toUpperCase();
-            
-            if (promoCodes[code]) {
-                const discountPercentage = promoCodes[code];
-                const discountAmount = originalPrice * discountPercentage;
-                currentPrice = originalPrice - discountAmount;
-
-                discountAmountEl.textContent = `-$${discountAmount.toFixed(2)}`;
-                totalPriceEl.textContent = `$${currentPrice.toFixed(2)}`;
-                
-                promoStatus.textContent = `Success! ${discountPercentage * 100}% discount applied.`;
-                promoStatus.classList.remove('text-red-500');
-                promoStatus.classList.add('text-green-500');
-            } else if (code === '') {
-                promoStatus.textContent = '';
-            } 
-            else {
-                currentPrice = originalPrice;
-                discountAmountEl.textContent = `-$0.00`;
-                totalPriceEl.textContent = `$${originalPrice.toFixed(2)}`;
-                promoStatus.textContent = 'Invalid promo code.';
-                promoStatus.classList.remove('text-green-500');
-                promoStatus.classList.add('text-red-500');
-            }
-        });
-
-        payBtn.addEventListener('click', () => {
-            // Dynamically create payment options when modal is opened
-            paymentOptionsContainer.innerHTML = `
-                <!-- PayPal -->
-                <a href="https://paypal.me/${paymentInfo.paypalUser}/${currentPrice}" target="_blank" class="payment-option">
-                    <img src="https://placehold.co/100x40/374151/FFFFFF?text=PayPal" alt="PayPal Logo">
-                    <div>
-                        <p class="font-semibold">PayPal</p>
-                        <p class="text-sm text-gray-400">Click to pay $${currentPrice.toFixed(2)}</p>
-                    </div>
-                </a>
-
-                <!-- Venmo -->
-                <a href="https://venmo.com/${paymentInfo.venmoUser}?txn=pay&amount=${currentPrice}&note=Coaching%20Session" target="_blank" class="payment-option">
-                    <img src="https://placehold.co/100x40/374151/FFFFFF?text=Venmo" alt="Venmo Logo">
-                    <div>
-                        <p class="font-semibold">Venmo</p>
-                        <p class="text-sm text-gray-400">Click to pay $${currentPrice.toFixed(2)}</p>
-                    </div>
-                </a>
-                
-                <!-- Cash App -->
-                <a href="https://cash.app/$${paymentInfo.cashAppTag}/${currentPrice}" target="_blank" class="payment-option">
-                    <img src="https://placehold.co/100x40/374151/FFFFFF?text=Cash+App" alt="Cash App Logo">
-                    <div>
-                        <p class="font-semibold">Cash App</p>
-                        <p class="text-sm text-gray-400">Click to pay $${currentPrice.toFixed(2)}</p>
-                    </div>
-                </a>
-
-                <!-- Zelle -->
-                <div class="payment-option">
-                    <img src="https://placehold.co/100x40/374151/FFFFFF?text=Zelle" alt="Zelle Logo">
-                    <div>
-                        <p class="font-semibold">Zelle</p>
-                        <p class="text-sm text-gray-400">Send $${currentPrice.toFixed(2)} to: <strong>${paymentInfo.zelleInfo}</strong></p>
-                    </div>
-                </div>
-
-                <!-- Apple Pay -->
-                <div class="payment-option">
-                    <img src="https://placehold.co/100x40/374151/FFFFFF?text=Apple+Pay" alt="Apple Pay Logo">
-                    <div>
-                        <p class="font-semibold">Apple Pay</p>
-                        <p class="text-sm text-gray-400">Please contact me to arrange Apple Pay.</p>
-                    </div>
-                </div>
-            `;
-            modalOverlay.classList.remove('hidden');
-        });
-
-        // Close modal when the 'x' button is clicked
-        closeModalBtn.addEventListener('click', () => {
+        setTimeout(() => {
             modalOverlay.classList.add('hidden');
-        });
+        }, 300); // matches transition duration
+    }
 
-        // Close modal when the dark background overlay is clicked
-        modalOverlay.addEventListener('click', (event) => {
-            if (event.target === modalOverlay) {
-                modalOverlay.classList.add('hidden');
-            }
-        });
+    payNowBtn.addEventListener('click', openModal);
+    closeModalBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (event) => {
+        if (event.target === modalOverlay) closeModal();
+    });
+});
+</script>
 
-    </script>
-</body>
-</html>
