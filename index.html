@@ -92,7 +92,6 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 40;
-            display: flex;
             justify-content: center;
             align-items: center;
         }
@@ -169,7 +168,9 @@
                     <!-- Triple Jump Card -->
                     <div class="card text-center">
                         <div class="mb-4 inline-block">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 gold-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" transform="rotate(90 12 12) translate(-4, 2)"/><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" transform="rotate(90 12 12) translate(4, 2)"/></svg>
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 gold-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 19c1.5-3 3.5-3 5 0 .5-4 4.5-5 7 0 .5-5 5.5-6 9 0"/>
+                           </svg>
                         </div>
                         <h3 class="text-2xl font-bold mb-3">Triple Jump</h3>
                         <p class="text-gray-400">Develop a powerful hop, a strong step, and an explosive jump. This training builds rhythm and coordination for a perfect sequence.</p>
@@ -183,7 +184,7 @@
             <div class="container mx-auto px-6">
                 <div class="grid md:grid-cols-5 gap-8 md:gap-12 items-center">
                     <div class="md:col-span-2">
-                        <img src="https://raw.githubusercontent.com/A-APC/Athlete-to-Athlete-Coaching/main/eaxflorida-olytrial">
+                        <img src="https://raw.githubusercontent.com/Caleb_Foster/Athlete-to-Athlete-Coaching/main/eaxflorida-olytrial">
                     </div>
                     <div class="md:col-span-3">
                         <h2 class="text-3xl md:text-4xl font-bold mb-4">Hello, I'm <span class="gold-text">Caleb Foster!</span></h2>
@@ -203,9 +204,9 @@
             <div class="container mx-auto px-6">
                 <h2 class="section-title">My <span class="gold-text">Rates</span></h2>
                 <p class="text-center text-gray-400 max-w-xl mx-auto mb-12">Choose the plan that fits your training needs and goals.</p>
-                <div class="flex flex-wrap justify-center gap-8">
+                <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
                     <!-- Hourly Sessions Card -->
-                    <div class="card w-full max-w-sm flex flex-col">
+                    <div class="card flex flex-col">
                         <h3 class="text-2xl font-bold text-center mb-2">Hourly Sessions</h3>
                         <p class="text-5xl font-black text-center mb-6"><span class="gold-text">$80</span><span class="text-lg text-gray-400"> / hour</span></p>
                         <ul class="space-y-4 text-gray-300 flex-grow">
@@ -217,7 +218,7 @@
                          <a href="#payment" class="btn btn-primary mt-8 w-full">Book a Session</a>
                     </div>
                     <!-- Monthly Package Card -->
-                    <div class="card w-full max-w-sm flex flex-col opacity-60">
+                    <div class="card flex flex-col opacity-60">
                         <h3 class="text-2xl font-bold text-center mb-2">Monthly Package</h3>
                         <div class="text-5xl font-black text-center mb-6 text-gray-500">
                              Coming Soon ❗❗❗
@@ -304,7 +305,7 @@
     </main>
 
     <!-- Payment Modal -->
-<div id="payment-modal-overlay" class="hidden fixed inset-0 bg-black bg-opacity-70 z-40 flex justify-center items-center">
+<div id="payment-modal-overlay" class="hidden fixed inset-0 bg-black bg-opacity-70 z-40 justify-center items-center">
     <div id="payment-modal" 
          class="relative transform scale-95 opacity-0 transition-all duration-300 ease-out bg-gray-800 p-8 rounded-xl border border-gray-700 w-11/12 max-w-lg">
         
@@ -344,10 +345,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const paymentInfo = {
         amount: 80,
-        paypalUser: "YOURPAYPALUSERNAME",
-        cashAppTag: "YOURCASHTAG",
-        venmoUser: "YOURVENMOTAG",
-        zelleInfo: "your@email.com or (555) 123-4567"
+        paypalUser: "CALEBFOSTER002",
+        cashAppTag: "CFCA0202",
+        venmoUser: "Caleb-foster-34",
+        zelleInfo: "(555)797-6168 or Calebfoster101@gmail.com"
     };
 
     const payNowBtn = document.getElementById('pay-now-btn');
@@ -362,11 +363,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openModal() {
         paypalLink.href = `https://paypal.me/${paymentInfo.paypalUser}/${paymentInfo.amount}`;
-        cashAppLink.href = `https://cash.app/$${paymentInfo.$CFCA0202}/${paymentInfo.amount}`;
-        venmoLink.href = `https://venmo.com/${paymentInfo.caleb-foster-34}?txn=pay&amount=${paymentInfo.amount}&note=CoachingSession`;
-        zelleInfo.textContent = paymentInfo.(559)797-6168;
+        cashAppLink.href = `https://cash.app/$${paymentInfo.cashAppTag}/${paymentInfo.amount}`;
+        venmoLink.href = `https://venmo.com/${paymentInfo.venmoUser}?txn=pay&amount=${paymentInfo.amount}&note=CoachingSession`;
+        zelleInfo.textContent = paymentInfo.zelleInfo;
 
         modalOverlay.classList.remove('hidden');
+        modalOverlay.classList.add('flex');
 
         // animate in
         setTimeout(() => {
@@ -382,6 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             modalOverlay.classList.add('hidden');
+            modalOverlay.classList.remove('flex');
         }, 300); // matches transition duration
     }
 
@@ -392,4 +395,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
-
+</body>
+</html>
