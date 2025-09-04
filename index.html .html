@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Performance Coaching</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark background */
+            color: #F3F4F6; /* Light text */
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('https://placehold.co/1920x1080/000000/FFFFFF?text=Athlete+in+Motion');
+            background-size: cover;
+            background-position: center;
+        }
+        .gold-text {
+            color: #D97706; /* Amber-600 */
+        }
+        .section-title {
+            font-weight: 900;
+            font-size: 2.25rem; /* text-4xl */
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background-color: #1F2937; /* Gray-800 */
+            border: 1px solid #374151; /* Gray-700 */
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(217, 119, 6, 0.1), 0 4px 6px -2px rgba(217, 119, 6, 0.05);
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem; /* rounded-lg */
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #D97706;
+            color: #FFFFFF;
+        }
+        .btn-primary:hover {
+            background-color: #B45309;
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: #F3F4F6;
+            border: 1px solid #D97706;
+        }
+        .btn-secondary:hover {
+            background-color: #D97706;
+            color: #FFFFFF;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            background-color: #374151; /* Gray-700 */
+            border: 1px solid #4B5563; /* Gray-600 */
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: #F3F4F6;
+        }
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: #9CA3AF; /* Gray-400 */
+        }
+        .form-select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%239CA3AF' class='w-6 h-6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.5em 1.5em;
+        }
+        /* Payment Modal Styles */
+        #payment-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #payment-modal {
+            background-color: #1F2937;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border: 1px solid #374151;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #4B5563;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            color: #F3F4F6;
+        }
+        .payment-option:hover {
+            background-color: #374151;
+        }
+        .payment-option img {
+            height: 2.5rem;
+            width: auto;
+            margin-right: 1.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Hero Section -->
+    <header id="home" class="hero-section">
+        <div class="container mx-auto px-6 py-24 md:py-32 text-center">
+            <h1 class="text-4xl md:text-6xl font-black uppercase tracking-wider mb-4">
+                Elevate Your <span class="gold-text">Performance.</span><br> Dominate the <span class="gold-text">Field.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                Personalized athlete-to-athlete coaching for long jumpers, triple jumpers, and sprinters.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#specializations" class="btn btn-secondary">Explore Our Programs</a>
+                <a href="#contact" class="btn btn-primary">Start Your Journey</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Coaching Specializations Section -->
+        <section id="specializations" class="py-20 md:py-28 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Coaching <span class="gold-text">Specializations</span></h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Sprints Card -->
+                    <div class="card text-center">
+                        <div class="mb-4 inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 gold-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Sprints</h3>
+                        <p class="text-gray-400">Perfect your acceleration, top-end speed, and race-day strategy. Our focus is on explosive power and efficiency.</p>
+                    </div>
+                    <!-- Long Jump Card -->
+                    <div class="card text-center">
+                        <div class="mb-4 inline-block">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 gold-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 19h5"></path><path stroke-linecap="round" stroke-linejoin="round" d="M8 19C10.5 12 14.5 9 20 11"></path><rect x="15" y="16" width="7" height="3" rx="1" stroke-linecap="round" stroke-linejoin="round"></rect></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Long Jump</h3>
+                        <p class="text-gray-400">Refine your run-up, master your takeoff, and maximize your hang time. We'll train the complete jump from start to finish.</p>
+                    </div>
+                    <!-- Triple Jump Card -->
+                    <div class="card text-center">
+                        <div class="mb-4 inline-block">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 gold-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" transform="rotate(90 12 12) translate(-4, 2)"/><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" transform="rotate(90 12 12) translate(4, 2)"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Triple Jump</h3>
+                        <p class="text-gray-400">Develop a powerful hop, a strong step, and an explosive jump. This training builds rhythm and coordination for a perfect sequence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-5 gap-8 md:gap-12 items-center">
+                    <div class="md:col-span-2">
+                        <img src="https://placehold.co/400x400/1F2937/D97706?text=Caleb+Foster" alt="Caleb Foster" class="rounded-full shadow-lg mx-auto border-4 border-gray-700">
+                    </div>
+                    <div class="md:col-span-3">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Hello, I'm <span class="gold-text">Caleb Foster!</span></h2>
+                        <p class="text-gray-300 mb-4">With over 14 years of experience in track and field, 4 years running at the University of Florida, and 1 at the University of Oregon I've had the privilege of competing at elite levels from Collegiate to national and now post-collegiate. My coaching philosophy centers on a holistic and intentional approach, focused not just on physical mechanics and strength but also on mental resilience, nutrition, and personalized strategies and habits.</p>
+                        <p class="text-gray-300 mb-4">I believe that every athlete has unique potential waiting to be unlocked by the right coach. My small group sessions are designed to create a supportive, competitive environment where you can push your limits and achieve your personal best while my 1-on-1 sessions are even more technical and personal. Let's work together to get you to the next level and forming the habits that are likely to lead you to success.</p>
+                        <blockquote class="border-l-4 border-amber-600 pl-4 py-2 my-6">
+                            <p class="text-lg italic text-gray-400">"All it takes is one."</p>
+                             <p class="text-md text-gray-500 mt-1">This can mean one practice, one talk, one que, one jump, or one step. All the "1s" add up to form the result you end up with.</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- My Rates Section -->
+        <section id="rates" class="py-20 md:py-28 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">My <span class="gold-text">Rates</span></h2>
+                <p class="text-center text-gray-400 max-w-xl mx-auto mb-12">Choose the plan that fits your training needs and goals.</p>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <!-- Hourly Sessions Card -->
+                    <div class="card w-full max-w-sm flex flex-col">
+                        <h3 class="text-2xl font-bold text-center mb-2">Hourly Sessions</h3>
+                        <p class="text-5xl font-black text-center mb-6"><span class="gold-text">$80</span><span class="text-lg text-gray-400"> / hour</span></p>
+                        <ul class="space-y-4 text-gray-300 flex-grow">
+                            <li class="flex items-center"><span class="text-amber-500 mr-3">✅</span> Personalized 1:1 attention</li>
+                            <li class="flex items-center"><span class="text-amber-500 mr-3">✅</span> Focus on specific drills or form</li>
+                            <li class="flex items-center"><span class="text-amber-500 mr-3">✅</span> Flexible scheduling</li>
+                            <li class="flex items-center"><span class="text-amber-500 mr-3">✅</span> Perfect for tune-ups or a single session</li>
+                        </ul>
+                         <a href="#payment" class="btn btn-primary mt-8 w-full">Book a Session</a>
+                    </div>
+                    <!-- Monthly Package Card -->
+                    <div class="card w-full max-w-sm flex flex-col opacity-60">
+                        <h3 class="text-2xl font-bold text-center mb-2">Monthly Package</h3>
+                        <div class="text-5xl font-black text-center mb-6 text-gray-500">
+                             Coming Soon ❗❗❗
+                        </div>
+                        <p class="text-center text-gray-400 mt-8 flex-grow">A complete package for dedicated athletes. Includes personalized training plans, regular check-ins, and more.</p>
+                         <button class="btn btn-primary mt-8 w-full" disabled>Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment Section -->
+        <section id="payment" class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Book Your <span class="gold-text">Session</span></h2>
+                <div class="max-w-md mx-auto card">
+                    <div class="flex justify-between items-center mb-6 border-b border-gray-700 pb-4">
+                        <h3 class="text-xl font-semibold">Hourly Session</h3>
+                        <p class="text-3xl font-bold" id="original-price">$80</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="promo-code" class="block mb-2 text-sm font-medium">Promo Code</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="promo-code" class="form-input uppercase" placeholder="Enter Code">
+                            <button id="apply-promo" class="btn btn-secondary">Apply</button>
+                        </div>
+                        <p id="promo-status" class="text-sm mt-2 h-5"></p> 
+                    </div>
+                    
+                    <div class="border-t border-gray-700 pt-4 mt-6 space-y-2">
+                         <div class="flex justify-between text-gray-400">
+                            <span>Discount</span>
+                            <span id="discount-amount">-$0.00</span>
+                        </div>
+                        <div class="flex justify-between font-bold text-xl">
+                            <span>Total</span>
+                            <span id="total-price" class="gold-text">$80.00</span>
+                        </div>
+                    </div>
+                    
+                    <button id="pay-now" class="btn btn-primary w-full mt-8">Pay Now</button>
+                    <p class="text-xs text-gray-500 text-center mt-4">Note: This is a demo form. No real payment will be processed.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-28 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Have a <span class="gold-text">Question?</span></h2>
+                <p class="text-center text-gray-400 max-w-xl mx-auto mb-12">Fill out the form below and I'll get back to you as soon as possible.</p>
+                <form class="max-w-xl mx-auto">
+                    <div class="grid sm:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="full-name" class="block mb-2 text-sm font-medium">Full Name</label>
+                            <input type="text" id="full-name" class="form-input" placeholder="John Doe" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium">Email Address</label>
+                            <input type="email" id="email" class="form-input" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="event" class="block mb-2 text-sm font-medium">Event of Interest</label>
+                        <select id="event" class="form-select">
+                            <option selected>Select your event</option>
+                            <option value="sprints">Sprints</option>
+                            <option value="long-jump">Long Jump</option>
+                            <option value="triple-jump">Triple Jump</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-8">
+                         <label for="goals" class="block mb-2 text-sm font-medium">Tell me about you and your goals</label>
+                         <textarea id="goals" rows="4" class="form-textarea" placeholder="Describe your experience, personal bests, and what you hope to achieve..."></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary w-full sm:w-auto">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal-overlay" class="hidden">
+        <div id="payment-modal">
+            <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
+            <h2 class="text-2xl font-bold text-center mb-6">Choose Payment Method</h2>
+            <div id="payment-options-container">
+                <!-- Links will be dynamically inserted here -->
+            </div>
+            <div class="mt-4 text-center text-sm text-gray-500">
+                <p>After paying, your session is confirmed. Caleb will be in touch shortly.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
+            <p>&copy; 2025 Elite Performance Coaching. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const applyBtn = document.getElementById('apply-promo');
+        const promoInput = document.getElementById('promo-code');
+        const promoStatus = document.getElementById('promo-status');
+        const discountAmountEl = document.getElementById('discount-amount');
+        const totalPriceEl = document.getElementById('total-price');
+        const payBtn = document.getElementById('pay-now');
+        const modalOverlay = document.getElementById('payment-modal-overlay');
+        const closeModalBtn = document.getElementById('close-modal');
+        const paymentOptionsContainer = document.getElementById('payment-options-container');
+
+        const originalPrice = 80;
+        let currentPrice = 80;
+
+        // --- PAYMENT & CONTACT INFO ---
+        // !!! IMPORTANT: Replace these placeholders with your actual usernames and info !!!
+        const paymentInfo = {
+            venmoUser: "YOUR-VENMO-ID",
+            cashAppTag: "YOUR-CASHTAG",
+            paypalUser: "YOUR-PAYPALME-ID",
+            zelleInfo: "name@email.com or 555-123-4567" // Your Zelle Email/Phone
+        };
+
+
+        // --- PROMO CODES ---
+        // Add or remove your promo codes here.
+        // The key is the code users will type (e.g., "JUMPSTART25").
+        // The value is the discount percentage (e.g., 0.25 for 25% off).
+        const promoCodes = {
+            "JUMPSTART25": 0.25,
+            "SPRINT10": 0.10,
+            "FOSTER50": 0.50
+        };
+
+        applyBtn.addEventListener('click', () => {
+            const code = promoInput.value.trim().toUpperCase();
+            
+            if (promoCodes[code]) {
+                const discountPercentage = promoCodes[code];
+                const discountAmount = originalPrice * discountPercentage;
+                currentPrice = originalPrice - discountAmount;
+
+                discountAmountEl.textContent = `-$${discountAmount.toFixed(2)}`;
+                totalPriceEl.textContent = `$${currentPrice.toFixed(2)}`;
+                
+                promoStatus.textContent = `Success! ${discountPercentage * 100}% discount applied.`;
+                promoStatus.classList.remove('text-red-500');
+                promoStatus.classList.add('text-green-500');
+            } else if (code === '') {
+                promoStatus.textContent = '';
+            } 
+            else {
+                currentPrice = originalPrice;
+                discountAmountEl.textContent = `-$0.00`;
+                totalPriceEl.textContent = `$${originalPrice.toFixed(2)}`;
+                promoStatus.textContent = 'Invalid promo code.';
+                promoStatus.classList.remove('text-green-500');
+                promoStatus.classList.add('text-red-500');
+            }
+        });
+
+        payBtn.addEventListener('click', () => {
+            // Dynamically create payment options when modal is opened
+            paymentOptionsContainer.innerHTML = `
+                <!-- PayPal -->
+                <a href="https://paypal.me/${paymentInfo.paypalUser}/${currentPrice}" target="_blank" class="payment-option">
+                    <img src="https://placehold.co/100x40/374151/FFFFFF?text=PayPal" alt="PayPal Logo">
+                    <div>
+                        <p class="font-semibold">PayPal</p>
+                        <p class="text-sm text-gray-400">Click to pay $${currentPrice.toFixed(2)}</p>
+                    </div>
+                </a>
+
+                <!-- Venmo -->
+                <a href="https://venmo.com/${paymentInfo.venmoUser}?txn=pay&amount=${currentPrice}&note=Coaching%20Session" target="_blank" class="payment-option">
+                    <img src="https://placehold.co/100x40/374151/FFFFFF?text=Venmo" alt="Venmo Logo">
+                    <div>
+                        <p class="font-semibold">Venmo</p>
+                        <p class="text-sm text-gray-400">Click to pay $${currentPrice.toFixed(2)}</p>
+                    </div>
+                </a>
+                
+                <!-- Cash App -->
+                <a href="https://cash.app/$${paymentInfo.cashAppTag}/${currentPrice}" target="_blank" class="payment-option">
+                    <img src="https://placehold.co/100x40/374151/FFFFFF?text=Cash+App" alt="Cash App Logo">
+                    <div>
+                        <p class="font-semibold">Cash App</p>
+                        <p class="text-sm text-gray-400">Click to pay $${currentPrice.toFixed(2)}</p>
+                    </div>
+                </a>
+
+                <!-- Zelle -->
+                <div class="payment-option">
+                    <img src="https://placehold.co/100x40/374151/FFFFFF?text=Zelle" alt="Zelle Logo">
+                    <div>
+                        <p class="font-semibold">Zelle</p>
+                        <p class="text-sm text-gray-400">Send $${currentPrice.toFixed(2)} to: <strong>${paymentInfo.zelleInfo}</strong></p>
+                    </div>
+                </div>
+
+                <!-- Apple Pay -->
+                <div class="payment-option">
+                    <img src="https://placehold.co/100x40/374151/FFFFFF?text=Apple+Pay" alt="Apple Pay Logo">
+                    <div>
+                        <p class="font-semibold">Apple Pay</p>
+                        <p class="text-sm text-gray-400">Please contact me to arrange Apple Pay.</p>
+                    </div>
+                </div>
+            `;
+            modalOverlay.classList.remove('hidden');
+        });
+
+        // Close modal when the 'x' button is clicked
+        closeModalBtn.addEventListener('click', () => {
+            modalOverlay.classList.add('hidden');
+        });
+
+        // Close modal when the dark background overlay is clicked
+        modalOverlay.addEventListener('click', (event) => {
+            if (event.target === modalOverlay) {
+                modalOverlay.classList.add('hidden');
+            }
+        });
+
+    </script>
+</body>
+</html>
