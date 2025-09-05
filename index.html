@@ -14,11 +14,18 @@
             background-color: #111827; /* Dark background */
             color: #F3F4F6; /* Light text */
         }
-        .hero-section {
-            background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('https://placehold.co/1920x1080/000000/FFFFFF?text=Athlete+in+Motion');
-            background-size: cover;
-            background-position: center;
+            .hero-section {
+    background-image: linear-gradient(rgba(17, 24, 39, 0.5), rgba(17, 24, 39, 0.5)), url('Headerphoto.jpg');
+    background-size: cover;          /* makes the image fill the container */
+    background-position: center;     /* centers the important part of the photo */
+    background-repeat: no-repeat;
+    height: 80vh;                    /* adjusts vertical size of hero */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
         }
+
         .gold-text {
             color: #D97706; /* Amber-600 */
         }
