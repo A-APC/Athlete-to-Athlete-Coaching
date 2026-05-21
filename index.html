@@ -247,50 +247,68 @@
         </section>
     
         <!-- REVISED Booking Section -->
-        <section id="booking" class="py-20 md:py-28">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">Book Your <span class="gold-text">Session</span></h2>
-                <p class="text-center text-gray-400 max-w-3xl mx-auto mb-12">Please choose your preferred booking and payment method below.</p>
+    <section id="booking" class="py-20 md:py-28">
+    <div class="container mx-auto px-6">
+        <h2 class="section-title">Book Your <span class="gold-text">Session</span></h2>
+        <p class="text-center text-gray-400 max-w-3xl mx-auto mb-12">Please choose your preferred booking and payment method below.</p>
+        
+        <div class="grid lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
+            
+            <div class="card flex flex-col">
+                <h3 class="text-2xl font-bold mb-4">Book with Automatic Payment</h3>
+                <p class="text-gray-400 mb-6 flex-grow">Use this option to book and pay securely with a credit card or PayPal. Your session will be instantly confirmed.</p>
+                <a href="https://calendly.com/calebfoster001/1-hour-coaching-session" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full mt-auto">Book with Automatic Payment</a>
+            </div>
                 
-                <div class="grid lg:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto">
-                    <!-- Book with Automatic Payment (Left Column) -->
-                    <div class="card flex flex-col">
-                        <h3 class="text-2xl font-bold mb-4">Book with Automatic Payment</h3>
-                        <p class="text-gray-400 mb-6 flex-grow">Use this option to book and pay securely with a credit card or PayPal. Your session will be instantly confirmed.</p>
-                        <!-- This button now links to the Calendly page in a new tab -->
-                        <a href="https://calendly.com/calebfoster001/1-hour-coaching-session" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full mt-auto">Book with Automatic Payment</a>
-                    </div>
+            <div class="card flex flex-col border-2 border-amber-600 shadow-xl relative">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-amber-600 text-white px-3 py-1 text-xs font-bold uppercase rounded-full tracking-wider">
+                    Best Value
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Monthly Package Subscription</h3>
+                <p class="text-amber-500 font-bold mb-4">$350 / month</p>
+                <p class="text-gray-400 mb-6 text-sm">Automate your training schedules. Set up your recurring payment through PayPal below, then secure your recurring slots on the calendar.</p>
+    
+                <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 text-center mb-4 mt-auto">
+                    <span class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Step 1: Start Subscription</span>
+                    <a href="https://www.paypal.com/ncp/payment/2DM3MY549ZRTA" target="_blank" rel="noopener noreferrer" class="bg-[#ffc439] hover:bg-[#f4b41a] text-black font-bold py-2.5 px-4 rounded-md inline-flex items-center justify-center gap-2 w-full transition duration-200 text-sm">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal_Keynote_Logo.svg" alt="PayPal" class="h-4">
+                        Subscribe Now
+                    </a>
+                </div>
 
-                    <!-- Book with Manual Payment (Right Column) -->
-                    <div class="card flex flex-col">
-                         <h3 class="text-2xl font-bold mb-4">Book with Manual Payment</h3>
-                         <p class="text-gray-400 mb-6 flex-grow">If you prefer to pay via Venmo, Cash App, or Zelle, please first book a time using the button below. Your session is confirmed once payment is received.</p>
-                         
-                         <!-- This button now links to the Calendly page in a new tab -->
-                         <a href="https://calendly.com/calebfoster001/1-hour-coaching-session-clone" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full mb-6 mt-auto">Book with Manual Payment</a>
-                         
-                         <div class="space-y-4 border-t border-gray-700 pt-6">
-                            <h4 class="text-lg font-semibold">Send Payment To:</h4>
-                            <!-- Venmo -->
-                            <div>
-                                <h5 class="font-semibold text-gray-300">Venmo</h5>
-                                <p class="text-amber-500 font-mono">@Caleb-foster-34</p>
-                            </div>
-                            <!-- Cash App -->
-                            <div>
-                                <h5 class="font-semibold text-gray-300">Cash App</h5>
-                                <p class="text-amber-500 font-mono">$CFCA0202</p>
-                            </div>
-                            <!-- Zelle -->
-                            <div>
-                                <h5 class="font-semibold text-gray-300">Zelle</h5>
-                                <p class="text-amber-500">Calebfoster101@gmail.com</p>
-                            </div>
-                         </div>
-                    </div>
+                <div class="text-center">
+                    <span class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Step 2: Reserve Times</span>
+                    <a href="https://calendly.com/calebfoster001/monthly-package" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full text-sm py-2">
+                        Schedule Training on Calendly
+                    </a>
                 </div>
             </div>
-        </section>
+
+            <div class="card flex flex-col">
+                 <h3 class="text-2xl font-bold mb-4">Book with Manual Payment</h3>
+                 <p class="text-gray-400 mb-6 flex-grow text-sm">If you prefer to pay via Venmo, Cash App, or Zelle, please first book a time using the button below. Your session is confirmed once payment is received.</p>
+                 
+                 <a href="https://calendly.com/calebfoster001/1-hour-coaching-session-clone" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full mb-6 mt-auto">Book with Manual Payment</a>
+                 
+                 <div class="space-y-4 border-t border-gray-700 pt-6 text-sm">
+                    <h4 class="text-lg font-semibold">Send Payment To:</h4>
+                    <div>
+                        <h5 class="font-semibold text-gray-300">Venmo</h5>
+                        <p class="text-amber-500 font-mono">@Caleb-foster-34</p>
+                    </div>
+                    <div>
+                        <h5 class="font-semibold text-gray-300">Cash App</h5>
+                        <p class="text-amber-500 font-mono">$CFCA0202</p>
+                    </div>
+                    <div>
+                        <h5 class="font-semibold text-gray-300">Zelle</h5>
+                        <p class="text-amber-500">Calebfoster101@gmail.com</p>
+                    </div>
+                 </div>
+            </div>
+
+        </div>
+</section>
 
                 <!-- Contact Section -->
 <section id="contact" class="py-20 md:py-28 bg-gray-900">
